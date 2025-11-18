@@ -1,81 +1,27 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <h1>채널명 : {{ channel }}</h1>
+  <!-- 머스태시 : 콧수염 문법 -->
+  <!-- text interpolation 보간법  -->
+  <h2>구독자수 : {{ subscribe }}</h2>
+  <p>오늘의 행운 숫자 : {{ Math.ceil(Math.random() * 45) }}</p>
+  <h1 v-text="channel"></h1>
+  <h2 v-text="subscribe"></h2>
+  <!-- <h2 v-text="subscribe">123</h2> 오류 -->
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <p v-html="channel2"></p>
+  <!-- v-text 에는 html이 표시되어버림 , v-html은 html 문법 적용가능 -->
 </template>
 
-<style>
-@import './assets/base.css';
+<script>
+export default {
+  data() {
+    return {
+      channel: "홈페이지 만들기",
+      channel2: "<b>홈페이지2 </b>",
+      subscribe: 2677,
+    };
+  },
+};
+</script>
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
