@@ -1,20 +1,39 @@
 <template>
-  <ul>
-    <li v-for="(item, index) in sports" key:index>{{ index }} {{ item }}</li>
-  </ul>
-  <p>{{ "count : " + count }}</p>
-  <button @click="count++">숫자 증가</button>
-  <button @click="count--">숫자 감소</button>
-  <button v-on:mouseover="count = 0">0으로 초기화</button>
+  <div>
+    <p>{{ num }}</p>
+    <!-- 보간법일때는 {{ increment() }} -->
+    <!-- v-on 디렉토리일때는 @click= increment -->
+    <button @click="increment">Increment number</button>
+    <button v-on:click="decrement">Decrement number</button>
+    <button @click.once="createAlert">알림</button>
+
+    <input type="text" @keydown.s="getKey"></input>"
+    <span>{{  kValue }}</span>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      sports: ["Baseball", "Football", "Volleyball"],
-      count: 0,
+      num: 0,
+      click_yes: true,
+      kValue: "",
     };
+  },
+  methods: {
+    getKey(e) {
+      this.kValue = e.key;
+    },
+    increment() {
+      this.num++;
+    },
+    decrement() {
+      this.num--;
+    },
+    createAlert() {
+      alert("경고창이 떴습니다.");
+    },
   },
 };
 </script>
