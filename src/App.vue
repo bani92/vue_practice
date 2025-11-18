@@ -1,21 +1,19 @@
 <template>
-  <h1 v-if="score >= 90">평점 : A</h1>
-  <h1 v-else-if="score >= 80">평점 : B</h1>
-  <h1 v-else-if="score >= 70">평점 : C</h1>
-  <h1 v-else>평점 : D</h1>
-  <h1 v-if="score != 60">이 영역은 v-if에서 관리</h1>
-  <h1 v-show="score != 60">이 영역은 v-show에서 관리</h1>
-  <!-- v-show는 개발자 도구에서 false라도 확인 가능 -->
-  <!-- 자주 변경되면 v-show, 변경 안되면 v-if -->
+  <ul>
+    <li v-for="(item, index) in sports" key:index>{{ index }} {{ item }}</li>
+  </ul>
+  <p>{{ "count : " + count }}</p>
+  <button @click="count++">숫자 증가</button>
+  <button @click="count--">숫자 감소</button>
+  <button v-on:mouseover="count = 0">0으로 초기화</button>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      channel: "홈페이지 만들기",
-      score: 60,
-      subscribe: 2677,
+      sports: ["Baseball", "Football", "Volleyball"],
+      count: 0,
     };
   },
 };
