@@ -1,41 +1,43 @@
 <template>
-  <div>
-    <p>{{ num }}</p>
-    <!-- 보간법일때는 {{ increment() }} -->
-    <!-- v-on 디렉토리일때는 @click= increment -->
-    <button @click="increment">Increment number</button>
-    <button v-on:click="decrement">Decrement number</button>
-    <button @click.once="createAlert">알림</button>
-
-    <input type="text" @keydown.s="getKey"></input>"
-    <span>{{  kValue }}</span>
+  <div
+    id="display"
+    v-on:mousemove="mousePos"
+    v-on:click.right.prevent="mouseClick"
+  >
+    x : {{ x }} <br />
+    y : {{ y }}
   </div>
+  <textarea>{{ msg }}</textarea>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      num: 0,
-      click_yes: true,
-      kValue: "",
+      x: 0,
+      y: 0,
+      msg: "",
     };
   },
   methods: {
-    getKey(e) {
-      this.kValue = e.key;
+    mousePos(e) {
+      this.x = e.offsetX;
+      this.y = e.offsetY;
     },
-    increment() {
-      this.num++;
-    },
-    decrement() {
-      this.num--;
-    },
-    createAlert() {
-      alert("경고창이 떴습니다.");
+    mouseClick(e) {
+      this.msg += this.x + "," + this.y + " \n";
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+#display {
+  width: 200px;
+  height: 200px;
+  background-color: goldenrod;
+}
+textarea {
+  height: 500px;
+}
+</style>
