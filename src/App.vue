@@ -1,35 +1,35 @@
 <template>
-  <!--  inline 스타일 > 클래스 스타일 -->
-  <div
-    class="demo"
-    @mouseover="initWidth"
-    :style="{ width: myWidth + 'px' }"
-  ></div>
-  <button @click="incWidth">버튼을 클릭해보세요</button>
+  <div>
+    <p>Count : {{ count }}</p>
+    <button @click="increment">Increment</button>
+    <p>{{ y }}</p>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      myWidth: 10,
+      count: 0,
+      y: "짝수",
     };
   },
   methods: {
-    incWidth: function () {
-      this.myWidth += 10;
+    increment() {
+      this.count++;
     },
-    initWidth: function () {
-      this.myWidth = 10;
+  },
+  watch: {
+    count(newVal, oldVal) {
+      console.log(`Count changed from ${oldVal} to ${newVal}`);
+      if (newVal % 2 === 0) {
+        this.y = "짝수";
+      } else {
+        this.y = "홀수";
+      }
     },
   },
 };
 </script>
 
-<style>
-.demo {
-  width: 100px;
-  height: 100px;
-  background-color: blueviolet;
-}
-</style>
+<style lang="scss" scoped></style>
