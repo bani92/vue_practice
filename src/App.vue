@@ -1,17 +1,28 @@
 <template>
   <div>
-    <h1>App.Vue</h1>
-    <!-- 파스칼 케이스  -->
-    <LocalChild />
-    <GlobalChild />
+    <h1>나는 부모</h1>
+    <button @click="ageInc">age++</button>
+    <ChildComponent v-bind:name="name" v-bind:age="age" />
   </div>
 </template>
 
 <script>
-import LocalChild from "./components/LocalChild.vue";
+import ChildComponent from "./components/ChildComponent.vue";
+
 export default {
+  data() {
+    return {
+      name: "John",
+      age: 30,
+    };
+  },
+  methods: {
+    ageInc() {
+      this.age++;
+    },
+  },
   components: {
-    LocalChild,
+    ChildComponent,
   },
 };
 </script>
