@@ -1,34 +1,42 @@
 <template>
-  <h1>나는 App.vue</h1>
-  <MainLayout>
-    <template v-slot:header>
-      <h1>Header</h1>
-    </template>
-    <template #contents>
-      <h1>Contents</h1>
-    </template>
-    <template v-slot:footer>
-      <h1>Footer</h1>
-    </template>
-  </MainLayout>
+  <div class="todo-container">
+    <h1>TODO List</h1>
 
-  <FancyButton v-slot="{ buttonName }"> {{ buttonName }} </FancyButton>
+    <TodoInput @todo-input="todoInput" />
+    <TodoList :todo-list @todo-update="todoUpdate" />
+  </div>
 </template>
 
 <script>
-import FancyButton from "./components/FancyButton.vue";
-import MainLayout from "./components/MainLayout.vue";
+import TodoInput from "./components/TodoInput.vue";
+import TodoList from "./components/TodoList.vue";
+import { v4 as uuidv4 } from "uuid";
+
 export default {
   data() {
     return {
-      buttonName: "클릭클릭",
+      todoList: [],
     };
   },
   components: {
-    FancyButton,
-    MainLayout,
+    TodoInput,
+    TodoList,
+  },
+  methods: {
+    todoInput(msg) {
+      const item = {
+        id: uuidv4(),
+        msg: msg,
+        completed: false,
+      };
+      this.todoList.push(item);
+    },
+    todoUpdate(id) {
+      this.todoList = this.todoList.map((v) =>
+        v.id === id ? { ...v, completed: !v.completed } : v
+      );
+      console.log(JSON.stringify(this.todoList));
+    },
   },
 };
 </script>
-
-<style scoped></style>
