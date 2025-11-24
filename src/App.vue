@@ -1,35 +1,34 @@
 <template>
-  <div>
-    <h1>안녕하세요.</h1>
-    <FirstChild />
-  </div>
+  <h1>나는 App.vue</h1>
+  <MainLayout>
+    <template v-slot:header>
+      <h1>Header</h1>
+    </template>
+    <template #contents>
+      <h1>Contents</h1>
+    </template>
+    <template v-slot:footer>
+      <h1>Footer</h1>
+    </template>
+  </MainLayout>
+
+  <FancyButton v-slot="{ buttonName }"> {{ buttonName }} </FancyButton>
 </template>
 
 <script>
-import FirstChild from "./components/FirstChild.vue";
-
+import FancyButton from "./components/FancyButton.vue";
+import MainLayout from "./components/MainLayout.vue";
 export default {
   data() {
     return {
-      gift: "장난감",
+      buttonName: "클릭클릭",
     };
   },
   components: {
-    FirstChild,
-  },
-  provide() {
-    return {
-      gift: this.gift,
-    };
+    FancyButton,
+    MainLayout,
   },
 };
 </script>
 
-<style scoped>
-h1 {
-  color: red;
-}
-span {
-  margin-left: 20px;
-}
-</style>
+<style scoped></style>
