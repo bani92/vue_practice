@@ -1,25 +1,22 @@
 <template>
   <div>
-    <p>count : {{ count }}</p>
-    <p>obj1 : {{ obj1.name }} / {{ obj1.age }}</p>
-    <button @click="good">클릭</button>
+    <h1 :class="titleClass">나를 빨강게 만들어 보세요.</h1>
+    <button @click="good1">클릭</button>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 
-const count = ref(0);
+const titleClass = ref("");
 
-const obj1 = reactive({
-  name: "kim",
-  age: 33,
-});
-
-const good = () => {
-  // count.value++;
-  obj1.name = "Lee";
+const good1 = () => {
+  titleClass.value = "title";
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.title {
+  color: red;
+}
+</style>
