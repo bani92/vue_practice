@@ -1,22 +1,25 @@
 <template>
   <div>
-    <h1 :class="titleClass">나를 빨강게 만들어 보세요.</h1>
-    <button @click="good1">클릭</button>
+    <p>cnt : {{ cnt }}</p>
+    <p>old : {{ obj.oldValue }} / new : {{ obj.newValue }}</p>
+    <button @click="counter">클릭</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, watch } from "vue";
 
-const titleClass = ref("");
+const cnt = ref(1);
+const obj = reactive({
+  oldValue: null,
+  newValue: null,
+});
+const counter = () => cnt.value++;
 
-const good1 = () => {
-  titleClass.value = "title";
-};
+watch(cnt, (newValue, oldValue) => {
+  obj.oldValue = oldValue;
+  obj.newValue = newValue;
+});
 </script>
 
-<style scoped>
-.title {
-  color: red;
-}
-</style>
+<style lang="scss" scoped></style>
