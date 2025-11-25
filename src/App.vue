@@ -1,42 +1,25 @@
 <template>
-  <div class="todo-container">
-    <h1>TODO List</h1>
-
-    <TodoInput @todo-input="todoInput" />
-    <TodoList :todo-list @todo-update="todoUpdate" />
+  <div>
+    <p>count : {{ count }}</p>
+    <p>obj1 : {{ obj1.name }} / {{ obj1.age }}</p>
+    <button @click="good">클릭</button>
   </div>
 </template>
 
-<script>
-import TodoInput from "./components/TodoInput.vue";
-import TodoList from "./components/TodoList.vue";
-import { v4 as uuidv4 } from "uuid";
+<script setup>
+import { ref, reactive } from "vue";
 
-export default {
-  data() {
-    return {
-      todoList: [],
-    };
-  },
-  components: {
-    TodoInput,
-    TodoList,
-  },
-  methods: {
-    todoInput(msg) {
-      const item = {
-        id: uuidv4(),
-        msg: msg,
-        completed: false,
-      };
-      this.todoList.push(item);
-    },
-    todoUpdate(id) {
-      this.todoList = this.todoList.map((v) =>
-        v.id === id ? { ...v, completed: !v.completed } : v
-      );
-      console.log(JSON.stringify(this.todoList));
-    },
-  },
+const count = ref(0);
+
+const obj1 = reactive({
+  name: "kim",
+  age: 33,
+});
+
+const good = () => {
+  // count.value++;
+  obj1.name = "Lee";
 };
 </script>
+
+<style lang="scss" scoped></style>
