@@ -1,24 +1,16 @@
 <template>
-  <div>
-    <p>watchEffect</p>
-    <p>count : {{ count }}</p>
-    <p>name : {{ name }}</p>
-    <button @click="counter">클릭</button>
-    <button @click="updateName">이름변경</button>
-  </div>
+  <h1>아래 있는 컴포넌트는 자식 컴포넌트입니다.</h1>
+  <ButtonCounter :title="post.title" :mainCont="post.mainCont" />
 </template>
 
 <script setup>
-import { ref, watchEffect } from "vue";
-const count = ref(1);
-const name = ref("홍길동");
+import ButtonCounter from "./components/ButtonCounter.vue";
 
-const counter = () => count.value++;
-const updateName = () =>
-  (name.value = name.value == "홍길동" ? "전우치" : "홍길동");
-watchEffect(() => {
-  console.log(`Count는 ${count.value} 입니다. 이름은 ${name.value} 입니다.`);
-});
+const post = {
+  id: 1,
+  title: "이것은 제목입니다.",
+  mainCont: "이것은 본문입니다.",
+};
 </script>
 
 <style lang="scss" scoped></style>
