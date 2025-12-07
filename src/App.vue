@@ -1,7 +1,18 @@
 <template>
-  <div>
-    <button @click="inputData">데이터 입력</button>
-    <button @click="getData">데이터 가져오기</button>
+  <div class="container">
+    <button @click="isInputMode = true" class="btn btn-primary ms-3 mt-3">데이터 입력</button>
+    <button @click="getData" class="btn btn-success ms-3 mt-3">데이터 가져오기</button>
+    <div v-show="isInputMode">
+      <form autocomplete="off">
+        <label class="form-level">Name</label>
+        <input type="text" class="form-control" v-model="name">
+        <label class="form-level">Email</label>
+        <input type="text" class="form-control" v-model="email"></input>
+        <button type="button" class="btn btn-success me-3 mt-3" @click="inputData">입력 확인</button>
+        <button type="button" class="btn btn-secondary mt-3" @click="isInputMode = false">취소</button>
+        
+      </form>
+    </div>
 
     <div ref="table"></div>
   </div>
@@ -12,17 +23,24 @@ import axios from "axios";
 import { ref } from "vue";
 
 const table = ref(null);
+const isInputMode = ref(false);
+const name = ref('')
+const email = ref('')
+
 
 const inputData = async () => {
   const res = await axios
     .post("http://localhost:3000/member", {
-      name: "kang",
-      email: "kang@gmail.com",
+      name: name.value,
+      email: email.value,
     })
     .then((res) => {
       console.log(res);
     });
-  console.log("2번쨰");
+  name.value = '';
+  email.value = '';
+  isInputMode.value = false;
+  getData();
 };
 
 const getData = () => {
