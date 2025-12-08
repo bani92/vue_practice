@@ -1,9 +1,9 @@
 {
   "member": [
     {
-      "id": "29ac",
       "name": "kang",
-      "email": "kang@gmail.com"
+      "email": "kang222111@gmail.com",
+      "id": "29ac"
     },
     {
       "id": "a7c1",
@@ -11,19 +11,9 @@
       "email": "kang@gmail.com"
     },
     {
-      "id": "fcb1",
       "name": "kang",
-      "email": "kang@gmail.com"
-    },
-    {
-      "id": "804f",
-      "name": "kang",
-      "email": "kang@gmail.com"
-    },
-    {
-      "id": "a050",
-      "name": "kang",
-      "email": "kang@gmail.com"
+      "email": "kang55@gmail.com",
+      "id": "804f"
     },
     {
       "id": "ab53",
@@ -31,24 +21,9 @@
       "email": "aaa@naver.com"
     },
     {
-      "id": "dcb2",
-      "name": "aaa",
-      "email": "eee"
-    },
-    {
-      "id": "5f34",
-      "name": "aaaa",
-      "email": "4333"
-    },
-    {
-      "id": "fc2c",
-      "name": "fff",
-      "email": "q111"
-    },
-    {
-      "id": "b00a",
-      "name": "rrrrr",
-      "email": "111"
+      "id": "fef2",
+      "name": "홍길동1",
+      "email": "aaa@naver.com"
     }
   ]
 }
